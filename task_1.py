@@ -49,11 +49,10 @@ class OnlineSalesRegisterCollector:
         total = []
         for item in twenty_percent_tax:
             total.append(self.__item_price.get(item))
+        total_tax = sum(total) * 0.2
         if self.__number_items > 10:
-            total_price = sum(total) * 0.9
-            return total_price * 0.2
-        else:
-            return sum(total) * 0.2
+            total_tax *= 0.9
+        return total_tax
 
     def ten_percent_tax_calculation(self):
         ten_percent_tax = []
@@ -63,11 +62,10 @@ class OnlineSalesRegisterCollector:
         total = []
         for item in ten_percent_tax:
             total.append(self.__item_price.get(item))
+        total_tax = sum(total) * 0.1
         if self.__number_items > 10:
-            total_price = sum(total) * 0.9
-            return total_price * 0.1
-        else:
-            return sum(total) * 0.1
+            total_tax *= 0.9
+        return total_tax
 
     def total_tax(self):
         return self.twenty_percent_tax_calculation() + self.ten_percent_tax_calculation()
@@ -85,7 +83,6 @@ class OnlineSalesRegisterCollector:
     def get_date_and_time():
         date_and_time = []
         now = datetime.datetime.now()
-        # print(now)
         date = [['часы', lambda x: x.hour],
                 ['минуты', lambda x: x.minute],
                 ['день', lambda x: x.day],
